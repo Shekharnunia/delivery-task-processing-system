@@ -1,0 +1,49 @@
+{% load static i18n %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Puzzles{% endblock title %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+    <meta name="description" content="An University Network">
+    <meta name="author" content="Shekhar Nunia">
+    {% block css %}
+    {% include 'includes/css.html' %}
+    
+    {% endblock css %}
+    {% block head %}{% endblock head %}
+  </head>
+  <body>
+    {% block body %}
+      <!--<button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+          Feedback <i class="fas fa-bullhorn" aria-hidden="true"></i>
+      </button>-->
+
+      {% include 'includes/navbar.html' %}
+
+      <div id="header" class="container">
+        
+        {% include 'includes/messages.html' %}
+          
+        {% block content %}
+          <p>Use this document as a way to quick start any new project.</p>
+        {% endblock content %}
+
+      </div>
+      <!-- /container -->
+
+      <!-- Le javascript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      {% block javascript %}
+      {% include 'includes/javascript.html' %}
+
+      {% endblock javascript %}
+
+      {% block modal %}{% endblock modal %}
+
+    {% endblock body %}
+  </body>
+</html>
