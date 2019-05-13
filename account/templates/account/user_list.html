@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans 'Users list' %}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/user_list.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block content %}
+
+  <div class="page-header">
+    <h1>{% trans 'All Users' %}</h1>
+  </div>
+
+  <ul class="user-profiles-list">
+    {% for user in user_list %}
+      <li>
+        <div class="">
+          <a href="{% url 'account:detail' user.username  %}" >
+          </a>
+        </div>
+        <p>
+          {% if user.email_public %}
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <a class="email" href="mailto:{{ user.email }}">
+              {{ user.username|title }}
+            </a>
+          {% else %}
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+              {{ user.username|title }}
+            </a>
+          {% endif %}
+          <span>
+            {% if user.first_name %}
+              <i class="fa fa-briefcase" aria-hidden="true"></i>
+              <i>  {{ user.get_profile_name}}</i>
+            {% endif %}
+          </span>
+          <span>
+            {% if user.last_name %}
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <i>  {{ user.location }}</i>
+            {% endif %}
+          </span>
+          <span>
+            {% if user.is_teacher %}
+              <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+              <i>  Teacher</i>
+            {% endif %}
+          </span>
+          <span>
+            {% if user.is_student %}
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              <i>  Student</i>
+            {% endif %}
+          </span>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+{% endblock content %}
