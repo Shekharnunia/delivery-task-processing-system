@@ -28,3 +28,6 @@ class DeliveryTask(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     priority = models.CharField(choices=PRIORITIES, default=LOW, max_length=8)
     states = models.CharField(choices=STATES, default=NEW, max_length=9)
+
+    def __str__(self):
+        return self.title

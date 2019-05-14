@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'delivery'
 urlpatterns = [
-    # url(r'^$', views.UserListView.as_view(), name='list'),
+    path('create/', views.task_create, name='create'),
 ]
